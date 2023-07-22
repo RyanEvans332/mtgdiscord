@@ -53,7 +53,7 @@ namespace csharpi.Services
             catch(Exception ex) 
             {
                 //user friendly error message from Scryfall API.
-                await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.InnerException.ToString()));
+                await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.ToString()));
                 ConsoleEx.WriteLine(ex.ToString());
             }
         }

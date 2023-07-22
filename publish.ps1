@@ -3,7 +3,7 @@
 #publish image
 $tag = (git rev-parse --short HEAD)
 cd mtgdiscord
-docker build --build-arg CACHEBUST=1 -t mtgdiscord -f Dockerfile .
+docker build --no-cache -t mtgdiscord -f Dockerfile .
 docker tag mtgdiscord docker.io/ryanevans332/mtgdiscord:$tag
 docker push docker.io/ryanevans332/mtgdiscord:$tag
 cd ..

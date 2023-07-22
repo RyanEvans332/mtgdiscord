@@ -10,7 +10,7 @@ namespace mtgdiscord
     {
         public static void WriteLine(string message)
         {
-            Console.WriteLine($"[{DateTime.UtcNow.ToString()}]: message");
+            Console.WriteLine($"[{DateTime.UtcNow.ToString()}]: {message}");
         }
     }
 }
