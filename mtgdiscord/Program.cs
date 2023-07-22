@@ -67,7 +67,7 @@ namespace csharpi
 
         private Task LogAsync(LogMessage log)
         {
-            Console.WriteLine(log.ToString());
+            Console.WriteLine($"{DateTime.Today.ToShortDateString()} {log.ToString()}");
             return Task.CompletedTask;
         }
 

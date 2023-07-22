@@ -28,15 +28,18 @@ namespace csharpi.Services
 
         // our first /command!
         [SlashCommand("card", "Enter a card name and I'll paste an image of it here.")]
-        public async Task EightBall(string name)
+        public async Task card(string name)
         {
             //give us some time to come up with a response
             await DeferAsync();
             try
             {
                 var card = await CardFactory.getCardByName(name);
+
+                //Display card name if Scryfall API gave a successful response.
                 await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(card.getCardName()));
 
+                //Display card images.
                 foreach (var uri in card.getCardImageURIs())
                 {
                     await FollowupAsync(uri);
@@ -44,6 +47,7 @@ namespace csharpi.Services
             }
             catch(Exception ex) 
             {
+                //user friendly error message from Scryfall API.
                 await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.ToString()));
             }
         }
