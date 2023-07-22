@@ -55,7 +55,7 @@ namespace csharpi
                 client.Ready += ReadyAsync;
 
                 // this is where we get the Token value from the configuration file, and start the bot
-                await client.LoginAsync(TokenType.Bot, "MTEyODkwMzU1Njc5MjA3ODM3OA.GW3rk4.eIakebdwer5wI6eTu7uvbqi8eDlLt_fAKERX9k");
+                await client.LoginAsync(TokenType.Bot, System.Environment.GetEnvironmentVariable("mtgdiscordbot"));
                 await client.StartAsync();
 
                 // we get the CommandHandler class here and call the InitializeAsync method to start things up for the CommandHandler service
