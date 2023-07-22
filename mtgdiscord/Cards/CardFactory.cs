@@ -20,6 +20,7 @@ namespace mtgdiscord.Cards
             {
                 var cardName = deserialized.name;
                 bool isSingleFacedCard = true;
+                ConsoleEx.WriteLine($"Found {cardName}");
                 
                 //Determine if card is single or multifaced
                 try
@@ -31,7 +32,7 @@ namespace mtgdiscord.Cards
                 catch (Exception ex)
                 {
                     //multifaced
-                    Console.WriteLine(ex.Message);
+                    ConsoleEx.WriteLine(ex.Message);
                     isSingleFacedCard = false;
                 }
 

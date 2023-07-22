@@ -10,6 +10,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using mtgdiscord.Cards;
 using mtgdiscord.MultiFacedCards;
+using mtgdiscord;
 
 namespace csharpi.Services
 {
@@ -30,12 +31,14 @@ namespace csharpi.Services
         [SlashCommand("card", "Enter a card name and I'll paste an image of it here.")]
         public async Task card(string name)
         {
+            ConsoleEx.WriteLine($"User request for '{name}'");
             //give us some time to come up with a response
             await DeferAsync();
             try
             {
                 var card = await CardFactory.getCardByName(name);
 
+                ConsoleEx.WriteLine($"Sending back request for '{card.getCardName()}'");
                 //Display card name if Scryfall API gave a successful response.
                 await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(card.getCardName()));
 
@@ -44,11 +47,14 @@ namespace csharpi.Services
                 {
                     await FollowupAsync(uri);
                 }
+
+                ConsoleEx.WriteLine($"Interaction for ${card.getCardName()} succeeded");
             }
             catch(Exception ex) 
             {
                 //user friendly error message from Scryfall API.
                 await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.InnerException.ToString()));
+                ConsoleEx.WriteLine(ex.ToString());
             }
         }
     }
