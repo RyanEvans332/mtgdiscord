@@ -12,5 +12,6 @@ namespace mtgdiscord.Cards
         public abstract string getCardName();
         public abstract List<string> getCardImageURIs();
         public abstract RuleSet getCardRules();
+        public abstract string getCardPrice();
     }
 }

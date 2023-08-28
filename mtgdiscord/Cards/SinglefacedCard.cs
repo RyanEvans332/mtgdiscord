@@ -26,6 +26,15 @@ namespace mtgdiscord.SingleFacedCards
             return RuleService.Instance.getRules(keywords);
         }
 
+        public override string getCardPrice()
+        {
+            if (string.IsNullOrEmpty(prices.usd))
+            {
+                return "N/A";
+            }
+            return $"${prices.usd}";
+        }
+
         #region serialized data
         [JsonProperty("object")]
         public string @object { get; set; }

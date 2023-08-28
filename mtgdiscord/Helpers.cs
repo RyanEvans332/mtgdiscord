@@ -13,4 +13,9 @@ namespace mtgdiscord
             Console.WriteLine($"[{DateTime.UtcNow.ToString()}]: {message}");
         }
     }
+
+    public class UserFriendlyError : Exception 
+    {
+        public UserFriendlyError(string message) : base(message) {}
+    }
 }

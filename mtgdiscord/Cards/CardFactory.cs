@@ -48,7 +48,7 @@ namespace mtgdiscord.Cards
             }
             else
             {
-                throw new Exception((string)deserialized.details);
+                throw new UserFriendlyError((string)deserialized.details);
             }
         }
     }

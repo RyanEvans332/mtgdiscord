@@ -41,7 +41,7 @@ namespace csharpi.Services
 
                 ConsoleEx.WriteLine($"Sending back request for '{card.getCardName()}'");
                 //Display card name if Scryfall API gave a successful response.
-                await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(card.getCardName()));
+                await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>($"{card.getCardName()} - Price: {card.getCardPrice()}"));
 
                 //Display card images.
                 foreach (var uri in card.getCardImageURIs())
@@ -52,14 +52,17 @@ namespace csharpi.Services
                 //Display rules
                 var ruleSet = card.getCardRules();
                 await FollowupAsync(ruleSet.ToString());
-                
 
                 ConsoleEx.WriteLine($"Interaction for ${card.getCardName()} succeeded");
             }
-            catch(Exception ex) 
+            catch(UserFriendlyError ex) 
             {
-                //user friendly error message from Scryfall API.
                 await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.Message));
+                ConsoleEx.WriteLine(ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                //Do not display
                 ConsoleEx.WriteLine(ex.ToString());
             }
         }
