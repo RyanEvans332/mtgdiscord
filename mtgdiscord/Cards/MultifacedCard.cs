@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using mtgdiscord.Rules;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,12 @@ namespace mtgdiscord.MultiFacedCards
         {
             return this.name;
         }
+
+        public override RuleSet getCardRules()
+        {
+            return RuleService.Instance.getRules(keywords);
+        }
+
         #region serialized data
         [JsonProperty("object")]
         public string @object { get; set; }

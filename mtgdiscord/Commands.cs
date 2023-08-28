@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using mtgdiscord.Cards;
 using mtgdiscord.MultiFacedCards;
 using mtgdiscord;
+using mtgdiscord.Rules;
 
 namespace csharpi.Services
 {
@@ -45,15 +46,20 @@ namespace csharpi.Services
                 //Display card images.
                 foreach (var uri in card.getCardImageURIs())
                 {
-                    await FollowupAsync(uri);
+                    await FollowupAsync($"{uri}");
                 }
+
+                //Display rules
+                var ruleSet = card.getCardRules();
+                await FollowupAsync(ruleSet.ToString());
+                
 
                 ConsoleEx.WriteLine($"Interaction for ${card.getCardName()} succeeded");
             }
             catch(Exception ex) 
             {
                 //user friendly error message from Scryfall API.
-                await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.ToString()));
+                await ModifyOriginalResponseAsync(m => m.Content = new Optional<String>(ex.Message));
                 ConsoleEx.WriteLine(ex.ToString());
             }
         }

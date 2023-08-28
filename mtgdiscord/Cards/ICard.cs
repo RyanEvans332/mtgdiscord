@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtgdiscord.Rules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace mtgdiscord.Cards
 {
     public abstract class ICard
     {
-        public abstract List<string> getCardImageURIs();
         public abstract string getCardName();
+        public abstract List<string> getCardImageURIs();
+        public abstract RuleSet getCardRules();
     }
 }

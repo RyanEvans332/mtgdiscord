@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using mtgdiscord.Rules;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,11 @@ namespace mtgdiscord.SingleFacedCards
         public override string getCardName()
         {
             return this.name;
+        }
+
+        public override RuleSet getCardRules()
+        {
+            return RuleService.Instance.getRules(keywords);
         }
 
         #region serialized data
