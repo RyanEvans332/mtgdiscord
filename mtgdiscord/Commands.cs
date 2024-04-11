@@ -50,8 +50,8 @@ namespace csharpi.Services
                 }
 
                 //Display rules
-                var ruleSet = card.getCardRules();
-                await FollowupAsync(ruleSet.ToString());
+                //var ruleSet = card.getCardRules();
+                //await FollowupAsync(ruleSet.ToString());
 
                 ConsoleEx.WriteLine($"Interaction for ${card.getCardName()} succeeded");
             }
